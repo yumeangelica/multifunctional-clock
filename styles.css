@@ -1,0 +1,258 @@
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Main colors */
+  --main-header-color: #e287eb;
+  --main-text-color: #50404d;
+
+  /* Dropdown switch */
+  --clock-function-dropdown-color: #fbecff;
+  --clock-function-dropdown-link-color: #fe90fe;
+
+  /* Buttons */
+  --btn-bg-color: #ed91ee;
+  --btn-border-color: #ac62c7;
+  --btn-text-color: #fff;
+  --btn-disabled-color: gray;
+  --btn-focus-color: #f5aaf5;
+
+  /* Misc */
+  --main-border-color: #d7a2db;
+  --src-code-color: #ca71da;
+  --src-code-hover: #d958e0;
+
+  /* Input */
+  --input-bg-color: #eed4f1;
+}
+
+/* Header styling */
+h1, h2, h3, h4 {
+  color: var(--main-header-color);
+}
+
+h1 {
+  margin: 30px 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 25px;
+  padding: 15px 0px;
+  margin: 40px 0px 10px 0px;
+}
+
+h3 {
+  font-size: 150%;
+  padding: 15px 0px 10px 0px;
+  margin: 30px 0px 10px 0px;
+}
+
+h4 {
+  font-size: 120%;
+  padding: 10px 0px;
+  margin: 10px 0px;
+}
+
+/* Styling body */
+body {
+  background: #fff1fd;
+  font-family: 'Arial', sans-serif;
+  margin: auto;
+}
+
+main {
+  width: 85%;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  color: var(--src-code-color);
+}
+
+a:hover {
+  color: var(--src-code-hover);
+  text-decoration: underline;
+}
+
+.source-code-link-container {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+/* Styling all input & text area elements */
+input,
+textarea {
+  margin-bottom: 6px;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid var(--main-border-color);
+  background-color: var(--input-bg-color);
+  color: var(--main-text-color);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--btn-focus-color);
+}
+
+/* Footer Fix */
+.footerfixer {
+  min-height: 80vh;
+}
+
+/* Button Styling */
+.btn {
+  background-color: var(--btn-bg-color);
+  color: var(--btn-text-color);
+  border: 1px solid var(--btn-border-color);
+  border-radius: 8px;
+  margin: 2px;
+}
+
+.btn:hover {
+  background-color: var(--main-header-color);
+  border: 1px solid var(--btn-border-color);
+}
+
+.btn:disabled {
+  background-color: var(--btn-disabled-color);
+  border: 1px solid var(--main-text-color);
+  color: var(--main-text-color);
+}
+
+.btn:focus {
+  color: var(--btn-focus-color);
+}
+
+.btn:active:enabled {
+  transform: scale(0.98);
+  box-shadow: 0px 0px 5px 1px var(--main-header-color);
+}
+
+/* Multifunctional clock styles */
+
+/* Stopwatch styling */
+.stopwatchcontainer,
+.timecontainer {
+  text-align: center;
+  font-size: 22px;
+}
+
+.buttonscontainer {
+  margin-bottom: 15px;
+}
+
+/* List styling for lap times */
+.timelist {
+  max-height: 200px;
+  max-width: 400px;
+  overflow-y: scroll;
+  padding-right: 10px;
+  margin: 0;
+  display: block;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+/* Show scrollbar */
+.timelist::-webkit-scrollbar {
+  width: 8px;
+}
+
+.timelist::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.timelist::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.timelist li {
+  margin-bottom: 15px;
+}
+
+/* For centering elements */
+.centering-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.timeshow {
+  text-align: center;
+}
+
+/* Clock container */
+.clockmainframe {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  height: 420px;
+}
+
+/* Dropdown button for clock modes */
+#clockfunctiondropdown {
+  padding: 5px;
+  background-color: var(--clock-function-dropdown-color);
+  border: 1px solid var(--main-border-color);
+  border-radius: 8px;
+  color: var(--clock-function-dropdown-link-color);
+  outline: none;
+}
+
+/* Dropdown links in the button */
+#clockfunctiondropdown a {
+  color: var(--clock-function-dropdown-link-color);
+}
+
+/* Remove default focus style for dropdown */
+#clockfunctiondropdown:focus {
+  border: 1px solid var(--main-border-color);
+  outline: none;
+  box-shadow: none;
+}
+
+#clockfunctiondropdown:hover {
+  color: var(--main-header-color);
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  background-color: transparent;
+  color: var(--clock-function-dropdown-link-color);
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* Prevent color change on active/focus when clicking */
+.dropdown-item:active, .dropdown-item:focus {
+  background-color: transparent;
+  color: var(--clock-function-dropdown-link-color);
+  outline: none;
+  box-shadow: none;
+}
+
+/* Hover effect */
+.dropdown-item:hover {
+  background-color: var(--clock-function-dropdown-color);
+  color: var(--main-header-color);
+}
+
+/* Clock displays for each mode */
+.clockdisplay {
+  text-align: center;
+  font-size: 150%;
+  margin: 10px 0px 10px 0px;
+}
