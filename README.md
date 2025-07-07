@@ -1,18 +1,42 @@
-# A multi-functional real-time clock, stopwatch, and countdown timer app
+# Multifunctional Clock (Vanilla JavaScript)
 
-Originally developed in 2020, this Vanilla JavaScript app combines a real-time clock, stopwatch, and countdown timer, offering a simple and efficient solution for tracking time in various scenarios. The app features a live clock display, a stopwatch, and a countdown timer. Built using pure JavaScript, CSS, HTML, and Bootstrap, this project demonstrates essential web development skills without relying on modern JavaScript frameworks or libraries.
+A multifunctional web app featuring a real-time clock, stopwatch, and countdown timer. Built with vanilla JavaScript, HTML, and CSS.
 
-I’ve made several improvements and decided to release it now.
+Modernized in 2024–2025 with full accessibility support, responsive design, and a clean, user-friendly interface.
 
-## Features:
-- **Real-Time Clock**: Displays the current time and updates in real-time.
-- **Stopwatch**: Start, stop, lap, and reset functionality for timing events.
-- **Countdown Timer**: Set a custom time and count down to zero.
-- Fully responsive design for desktop and mobile devices.
-- User-friendly interface with a clean, minimal design.
+## Features
 
-## Technologies Used:
-- **Vanilla JavaScript** for interactivity and functionality.
-- **CSS** for custom styling and layout.
-- **HTML** for the basic structure.
-- **Bootstrap** for responsive design and layout components.
+### Real-Time Clock
+- Live time and date display
+- 12/24-hour format toggle
+- Time-based greeting messages (e.g. Good Morning, Good Evening)
+- Angel number alerts (e.g. 11:11, 22:22)
+- Easter egg greetings for specific times
+
+### Stopwatch
+- High-precision timing using requestAnimationFrame
+- Start, stop, lap, and reset functionality
+- Chronological lap recording
+- Time format: HH:MM´SS´´MMM
+
+### Countdown Timer
+- Quick preset buttons and custom time input
+- Input validation and smart clearing behavior
+- Audio alerts using Web Audio API
+- Pause, resume, and clear functionality
+- Time format: MM:SS
+
+## Accessibility and UX
+- Fully keyboard-navigable and screen reader friendly
+- WCAG 2.1 AA compliance
+- Responsive design for all screen sizes
+- Reduced motion and high contrast support
+- Clear focus indicators and semantic HTML structure
+
+## License
+
+This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+**Created with love by [yumeangelica](https://yumeangelica.github.io) | 2020-2025**
