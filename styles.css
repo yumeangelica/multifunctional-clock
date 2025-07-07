@@ -3,256 +3,895 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* Prevent text selection on mobile */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Disable touch callouts */
+  -webkit-touch-callout: none;
+  /* Disable tap highlight */
+  -webkit-tap-highlight-color: transparent;
 }
 
 :root {
-  /* Main colors */
-  --main-header-color: #e287eb;
-  --main-text-color: #50404d;
-
-  /* Dropdown switch */
-  --clock-function-dropdown-color: #fbecff;
-  --clock-function-dropdown-link-color: #fe90fe;
-
-  /* Buttons */
-  --btn-bg-color: #ed91ee;
-  --btn-border-color: #ac62c7;
-  --btn-text-color: #fff;
-  --btn-disabled-color: gray;
-  --btn-focus-color: #f5aaf5;
-
-  /* Misc */
-  --main-border-color: #d7a2db;
-  --src-code-color: #ca71da;
-  --src-code-hover: #d958e0;
-
-  /* Input */
-  --input-bg-color: #eed4f1;
+  --color-white: rgb(255, 255, 255);
+  --color-primary: rgb(178, 77, 137);
+  --color-primary-light: rgb(241, 199, 232);
+  --color-background: rgb(255, 250, 253);
+  --color-text: rgb(33, 33, 33);
+  --color-accent: rgb(165, 79, 144);
+  --color-card-bg: rgb(254, 239, 249);
+  --color-text-secondary: rgb(100, 100, 100);
+  --color-border: rgb(220, 220, 220);
+  --color-gradient-start: rgb(178, 77, 137);
+  --color-gradient-end: rgb(165, 79, 144);
+  --transition-fast: 0.2s;
+  --transition-smooth: 0.3s;
 }
 
-/* Header styling */
+/* Typography */
 h1, h2, h3, h4 {
-  color: var(--main-header-color);
+  color: var(--color-primary);
+  font-weight: 300;
+  text-align: center;
+  margin: 1rem 0;
 }
 
 h1 {
-  margin: 30px 0;
-  text-align: center;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 h2 {
-  font-size: 25px;
-  padding: 15px 0px;
-  margin: 40px 0px 10px 0px;
+  font-size: 1.75rem;
 }
 
 h3 {
-  font-size: 150%;
-  padding: 15px 0px 10px 0px;
-  margin: 30px 0px 10px 0px;
+  font-size: 1.35rem;
 }
 
 h4 {
-  font-size: 120%;
-  padding: 10px 0px;
-  margin: 10px 0px;
+  font-size: 1.1rem;
 }
 
-/* Styling body */
+/* Layout */
 body {
-  background: #fff1fd;
-  font-family: 'Arial', sans-serif;
-  margin: auto;
+  background: var(--color-background);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--color-text);
+  line-height: 1.6;
+  font-weight: 400;
 }
 
 main {
-  width: 85%;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 1.5rem 1rem;
 }
 
-a {
+.navigation-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Links */
+.external-link {
+  background: var(--color-white);
+  color: var(--color-text);
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
   text-decoration: none;
-  color: var(--src-code-color);
-}
-
-a:hover {
-  color: var(--src-code-hover);
-  text-decoration: underline;
-}
-
-.source-code-link-container {
+  transition: all var(--transition-fast) ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
+  font-size: 0.9rem;
   text-align: center;
-  font-size: 22px;
-  margin-bottom: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
 }
 
-/* Styling all input & text area elements */
-input,
-textarea {
-  margin-bottom: 6px;
-  padding: 2px;
+.external-link:hover {
+  background: var(--color-card-bg);
+  color: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Buttons */
+.button {
+  background: var(--color-white);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  border: 1px solid var(--main-border-color);
-  background-color: var(--input-bg-color);
-  color: var(--main-text-color);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  transition: all var(--transition-fast) ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin: 4px;
 }
 
-input:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--btn-focus-color);
+.button:hover {
+  background: var(--color-card-bg);
+  color: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Footer Fix */
-.footerfixer {
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.main-container {
   min-height: 80vh;
 }
 
-/* Button Styling */
-.btn {
-  background-color: var(--btn-bg-color);
-  color: var(--btn-text-color);
-  border: 1px solid var(--btn-border-color);
-  border-radius: 8px;
-  margin: 2px;
+/* Clock Styles */
+.clock-container {
+  max-width: 800px;
+  margin: 1.5rem auto;
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border);
+  min-height: 300px;
 }
 
-.btn:hover {
-  background-color: var(--main-header-color);
-  border: 1px solid var(--btn-border-color);
-}
-
-.btn:disabled {
-  background-color: var(--btn-disabled-color);
-  border: 1px solid var(--main-text-color);
-  color: var(--main-text-color);
-}
-
-.btn:focus {
-  color: var(--btn-focus-color);
-}
-
-.btn:active:enabled {
-  transform: scale(0.98);
-  box-shadow: 0px 0px 5px 1px var(--main-header-color);
-}
-
-/* Multifunctional clock styles */
-
-/* Stopwatch styling */
-.stopwatchcontainer,
-.timecontainer {
+.clock-display {
   text-align: center;
-  font-size: 22px;
+  font-size: 1.8rem;
+  margin: 1rem 0;
+  font-weight: 300;
+  color: var(--color-text);
 }
 
-.buttonscontainer {
-  margin-bottom: 15px;
+.time-display {
+  text-align: center;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
 }
 
-/* List styling for lap times */
-.timelist {
-  max-height: 200px;
-  max-width: 400px;
-  overflow-y: scroll;
-  padding-right: 10px;
-  margin: 0;
-  display: block;
-  padding-right: 50px;
-  padding-left: 50px;
-}
-
-/* Show scrollbar */
-.timelist::-webkit-scrollbar {
-  width: 8px;
-}
-
-.timelist::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
-
-.timelist::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.timelist li {
-  margin-bottom: 15px;
-}
-
-/* For centering elements */
-.centering-container {
+.center-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.timeshow {
-  text-align: center;
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
-/* Clock container */
-.clockmainframe {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 800px;
-  height: 420px;
+.time-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+  margin: 1.5rem 0;
 }
 
-/* Dropdown button for clock modes */
-#clockfunctiondropdown {
-  padding: 5px;
-  background-color: var(--clock-function-dropdown-color);
-  border: 1px solid var(--main-border-color);
+/* Dropdown */
+#function-selector {
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  color: var(--clock-function-dropdown-link-color);
-  outline: none;
+  background: var(--color-card-bg);
+  color: var(--color-accent);
+  font-size: 1rem;
+  transition: all var(--transition-fast) ease;
+  cursor: pointer;
+  display: block;
 }
 
-/* Dropdown links in the button */
-#clockfunctiondropdown a {
-  color: var(--clock-function-dropdown-link-color);
+#function-selector:hover {
+  border-color: var(--color-primary-light);
+  transform: translateY(-1px);
 }
 
-/* Remove default focus style for dropdown */
-#clockfunctiondropdown:focus {
-  border: 1px solid var(--main-border-color);
-  outline: none;
-  box-shadow: none;
+/* Lap List */
+.lap-list {
+  max-height: 250px;
+  max-width: 500px;
+  overflow-y: auto;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  background: var(--color-white);
+  border-radius: 12px;
+  border: 1px solid var(--color-primary-light);
 }
 
-#clockfunctiondropdown:hover {
-  color: var(--main-header-color);
+.lap-list:empty {
+  display: none;
 }
 
-/* Dropdown item styling */
-.dropdown-item {
-  background-color: transparent;
-  color: var(--clock-function-dropdown-link-color);
-  padding: 8px 12px;
-  border-radius: 4px;
-  text-decoration: none;
+.lap-list li {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: var(--color-card-bg);
+  border-radius: 8px;
+  color: var(--color-text);
+  transition: all var(--transition-fast) ease;
 }
 
-/* Prevent color change on active/focus when clicking */
-.dropdown-item:active, .dropdown-item:focus {
-  background-color: transparent;
-  color: var(--clock-function-dropdown-link-color);
-  outline: none;
-  box-shadow: none;
+.lap-list li:hover {
+  background: var(--color-primary-light);
+  transform: translateX(5px);
 }
 
-/* Hover effect */
-.dropdown-item:hover {
-  background-color: var(--clock-function-dropdown-color);
-  color: var(--main-header-color);
-}
-
-/* Clock displays for each mode */
-.clockdisplay {
+/* Footer */
+.app-footer {
+  background: var(--color-background);
+  color: var(--color-text-secondary);
   text-align: center;
-  font-size: 150%;
-  margin: 10px 0px 10px 0px;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+#copyright-text {
+  text-align: center;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* Modern Timer Styles */
+.timer-presets {
+  margin-bottom: 2rem;
+}
+
+.preset-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.preset-btn {
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-card-bg));
+  color: var(--color-accent);
+  border: 1px solid var(--color-primary-light);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.preset-btn:hover {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(178, 77, 137, 0.3);
+}
+
+.preset-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.timer-inputs {
+  margin-bottom: 1.5rem;
+}
+
+.time-input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.time-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time-spinner label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  background: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timer-input {
+  width: 60px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  padding: 0.75rem 0.5rem;
+  outline: none;
+}
+
+/* Hide default number input spinner arrows */
+.timer-input::-webkit-outer-spin-button,
+.timer-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.timer-input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.spinner-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--color-card-bg);
+  color: var(--color-accent);
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.spinner-btn:active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.time-separator {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--color-accent);
+  margin: 0 0.5rem;
+}
+
+.time-preview {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--color-card-bg), var(--color-white));
+  border-radius: 12px;
+  border: 1px solid var(--color-primary-light);
+}
+
+.preview-label {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.preview-time {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--color-primary);
+  font-family: 'SF Mono', Monaco, monospace;
+  letter-spacing: 0.05em;
+}
+
+/* Clock Format Toggle */
+.clock-format-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.format-toggle-btn {
+  background: var(--color-gradient-start);
+  color: var(--color-white);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.format-toggle-btn:hover {
+  background: var(--color-gradient-end);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.format-toggle-btn:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.format-toggle-btn:active {
+  transform: translateY(0);
+}
+
+/* Touch and Mobile Optimization */
+/* Prevent text selection on mobile */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection for specific elements */
+input, .clock-display, .time-display, .preview-time, #elapsed-time-display, #countdown-display {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Prevent zoom on input focus */
+input[type="number"] {
+  font-size: 16px;
+}
+
+/* Better touch targets */
+.button, .external-link, .preset-btn, .spinner-btn {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+/* Prevent double-tap zoom */
+a, button, input, select {
+  touch-action: manipulation;
+}
+
+/* Responsive Design */
+/* Large screens - smaller buttons */
+@media (min-width: 1024px) {
+  .external-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 1rem 0.5rem;
+  }
+
+  .clock-container {
+    padding: 1.5rem 1rem;
+    min-height: 250px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .clock-display {
+    font-size: 1.4rem;
+  }
+
+  .time-display {
+    font-size: 1.2rem;
+  }
+
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .navigation-links {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .external-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .time-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #function-selector {
+    max-width: 280px;
+    font-size: 0.85rem;
+  }
+
+  .preset-buttons {
+    gap: 0.3rem;
+  }
+
+  .preset-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .time-input-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .time-separator {
+    display: none;
+  }
+
+  .timer-input {
+    width: 50px;
+    font-size: 1rem;
+  }
+
+  .spinner-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+
+  #copyright-text {
+    font-size: 0.8rem;
+    padding: 0.8rem 0.5rem;
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .clock-container {
+    padding: 1rem 0.75rem;
+    min-height: 200px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .clock-display {
+    font-size: 1.2rem;
+  }
+
+  .time-display {
+    font-size: 1rem;
+  }
+
+  .button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    min-height: 44px;
+  }
+
+  .external-link {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+    max-width: 220px;
+    min-height: 44px;
+  }
+
+  #function-selector {
+    max-width: 250px;
+    font-size: 0.8rem;
+  }
+
+  .preset-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .preset-btn {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .preview-time {
+    font-size: 1.5rem;
+  }
+
+  #copyright-text {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.4rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .external-link {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    max-width: 200px;
+  }
+
+  .preset-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+    max-width: 180px;
+  }
+
+  .button {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .clock-container {
+    padding: 0.8rem 0.5rem;
+  }
+
+  #copyright-text {
+    font-size: 0.7rem;
+    padding: 0.5rem 0.3rem;
+    margin-top: 0.8rem;
+  }
+}
+
+/* Accessibility Improvements */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Focus styles */
+button:focus,
+select:focus,
+input:focus,
+/* Enhanced focus styles for better keyboard navigation */
+a:focus,
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(178, 77, 137, 0.2);
+}
+
+/* Focus styles for all interactive elements */
+.button:focus,
+.button:focus-visible,
+.preset-btn:focus,
+.preset-btn:focus-visible,
+.spinner-btn:focus,
+.spinner-btn:focus-visible,
+.timer-input:focus,
+.timer-input:focus-visible,
+#function-selector:focus,
+#function-selector:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(178, 77, 137, 0.2);
+}
+
+/* Remove focus outline for mouse users */
+a:focus:not(:focus-visible),
+.button:focus:not(:focus-visible),
+.preset-btn:focus:not(:focus-visible),
+.spinner-btn:focus:not(:focus-visible),
+.timer-input:focus:not(:focus-visible),
+#function-selector:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: rgb(128, 0, 128);
+    --color-accent: rgb(75, 0, 130);
+    --color-text: rgb(0, 0, 0);
+    --color-background: rgb(255, 255, 255);
+    --color-border: rgb(0, 0, 0);
+    --color-card-bg: rgb(255, 255, 255);
+    --color-text-secondary: rgb(0, 0, 0);
+    --color-primary-light: rgb(150, 50, 150);
+  }
+
+  .button,
+  .external-link,
+  .preset-btn,
+  .spinner-btn {
+    border: 2px solid var(--color-text);
+    background: var(--color-background);
+    color: var(--color-text);
+  }
+
+  .button:hover,
+  .external-link:hover,
+  .preset-btn:hover,
+  .spinner-btn:hover {
+    background: var(--color-text);
+    color: var(--color-background);
+  }
+
+  .clock-container {
+    border: 2px solid var(--color-text);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .clock-container {
+    animation: none;
+  }
+
+  /* Remove transform animations for reduced motion */
+  .button:hover,
+  .external-link:hover,
+  .preset-btn:hover,
+  .lap-list li:hover {
+    transform: none;
+  }
+}
+
+/* Dark mode support for accessibility */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-white: rgb(30, 30, 30);
+    --color-primary: rgb(200, 120, 180);
+    --color-primary-light: rgb(180, 140, 200);
+    --color-background: rgb(18, 18, 18);
+    --color-text: rgb(240, 240, 240);
+    --color-accent: rgb(180, 100, 160);
+    --color-card-bg: rgb(40, 35, 40);
+    --color-text-secondary: rgb(180, 180, 180);
+    --color-border: rgb(80, 80, 80);
+  }
+
+  .clock-container {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+  }
+
+  .time-preview {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+  }
+}
+
+/* Improve touch targets for accessibility */
+@media (pointer: coarse) {
+  .button, .external-link, .preset-btn, .spinner-btn {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 0.75rem 1rem;
+  }
+
+  .timer-input {
+    min-height: 48px;
+    padding: 0.75rem 0.5rem;
+  }
+
+  #function-selector {
+    min-height: 48px;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  border-radius: 6px;
+  border: 2px solid var(--color-background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  box-shadow: 0 2px 8px rgba(178, 77, 137, 0.3);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--color-primary);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-background);
+}
+
+/* Lap list scrollbar */
+.lap-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lap-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+  border-radius: 4px;
+}
+
+.lap-list::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+}
+
+/* Animations */
+.clock-container {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
