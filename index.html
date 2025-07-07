@@ -3,107 +3,145 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Multifunctional Clock</title>
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="./styles.css">
-
-  <!-- JavaScript -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Multifunctional Clock - Real-time Clock, Stopwatch & Timer</title>
+  <meta name="description"
+    content="A modern multifunctional clock application featuring real-time clock display, precision stopwatch with lap times, and countdown timer with preset options.">
+  <meta name="theme-color" content="#b24d89">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕐</text></svg>">
+  <link rel="stylesheet" href="./styles.css">
   <script src="./app.js" defer></script>
   <script src="./copyright.js" defer></script>
 </head>
 
 <body>
+  <main class="main-container" role="main" id="main-content">
+    <h1>Multifunctional Clock</h1>
 
-  <main class="footerfixer">
-    <div class="container">
-      <h1>Multifunctional Clock</h1>
+    <nav class="navigation-links" role="navigation" aria-label="External links">
+      <a href="https://github.com/yumeangelica/multifunctional-clock" class="external-link" target="_blank" rel="noopener noreferrer"
+        aria-label="View source code on GitHub (opens in new tab)">
+        View Source Code
+      </a>
+      <a href="https://yumeangelica.github.io" class="external-link" target="_blank" rel="noopener noreferrer"
+        aria-label="View portfolio website (opens in new tab)">
+        View Portfolio
+      </a>
+    </nav>
 
-      <div class="source-code-link-container text-center mb-4">
-        <a href="https://github.com/yumeangelica/multifunctional-clock" target="_blank" class="source-code-link">Source Code</a>
-      </div>
-
-      <!-- Functionality dropdown -->
-      <div class="dropdown text-center">
-        <button class="dropdown-toggle" type="button" id="clockfunctiondropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Select clock functionality
-        </button>
-        <div class="dropdown-menu switchdropdown" aria-labelledby="clockfunctiondropdown">
-          <li><button class="dropdown-item" onclick="switchFrame('rtcframe')">Real-time Clock</button></li>
-          <li><button class="dropdown-item" onclick="switchFrame('stopwatchframe')">Stopwatch</button></li>
-          <li><button class="dropdown-item" onclick="switchFrame('timerframe')">Countdown</button></li>
-        </div>
-      </div>
-
-      <!-- Real-time Clock -->
-      <div id="rtcframe" class="clockmainframe">
-        <h2 class="text-center">Real-time Clock</h2>
-        <div id="rtdate" class="clockdisplay"></div>
-        <div id="clock" class="clockdisplay"></div>
-        <div id="greeting" class="clockdisplay"></div>
-      </div>
-
-      <!-- Stopwatch -->
-      <div id="stopwatchframe" class="clockmainframe" style="display:none;">
-        <h2 class="text-center">Stopwatch</h2>
-        <div class="timecontainer row">
-          <div class="col-xs">Elapsed Time: </div>
-          <div class="timeshow col-xs" id="displaytime">00:00´00´´000</div>
-        </div>
-        <div class="buttonscontainer centering-container">
-          <button class="btn" id="startbutton">Start</button>
-          <button class="btn" id="lapbutton" disabled>Lap</button>
-          <button class="btn" id="stopbutton" disabled>Stop</button>
-          <button class="btn" id="clearbutton" disabled>Clear</button>
-        </div>
-
-        <div class="centering-container">
-          <ol class="timelist" id="laptimelist"></ol>
-        </div>
-
-      </div>
-
-      <!-- Timer -->
-      <div id="timerframe" class="clockmainframe" style="display:none;">
-        <h2 class="text-center">Countdown Timer</h2>
-        <div>
-          <h4 class="text-center">Give Minutes:</h4>
-
-          <div class="centering-container">
-            <input type="tel" placeholder="Minutes" id="inputminutes" class="textinput" maxlength="2">
-          </div>
-
-          <h4 class="text-center">Give Seconds:</h4>
-
-          <div class="centering-container">
-            <input type="tel" placeholder="Seconds" id="inputseconds" class="textinput" maxlength="2">
-          </div>
-
-        </div>
-        <div id="countdown" class="clockdisplay">Timer</div>
-
-
-        <div class="centering-container">
-          <button class="btn" id="timerstart" onclick="countdownTimer()">Start</button>
-          <button class="btn" id="timerstop" onclick="timerstop()">Stop</button>
-        </div>
-
-      </div>
-
+    <div role="region" aria-label="Clock mode selector">
+      <label for="function-selector">
+        <h4>Clock Functionality</h4>
+      </label>
+      <select id="function-selector" aria-describedby="selector-help" aria-expanded="false">
+        <!-- Options will be populated dynamically by JavaScript -->
+      </select>
+      <div id="selector-help" class="visually-hidden">Use this dropdown to switch between different clock modes: real-time clock, stopwatch, or
+        countdown timer. Use arrow keys to navigate options and Enter to select.</div>
     </div>
+
+    <!-- Real-time Clock -->
+    <section id="real-time-clock" class="clock-container" role="region" aria-label="Real-time clock display">
+      <h2 id="realtime-heading">Real-time Clock</h2>
+
+      <!-- Clock Format Toggle -->
+      <div class="clock-format-toggle" role="group" aria-label="Clock format selection">
+        <button id="clock-format-btn" class="format-toggle-btn" aria-label="Toggle between 12-hour and 24-hour format" aria-describedby="format-help">
+          12H (AM/PM)
+        </button>
+        <div id="format-help" class="visually-hidden">Click to switch between 12-hour and 24-hour time display formats.</div>
+      </div>
+
+      <div id="current-date" class="clock-display" role="text" aria-live="polite" aria-label="Current date" aria-describedby="realtime-heading"></div>
+      <div id="current-time" class="clock-display" role="text" aria-live="polite" aria-label="Current time" aria-describedby="realtime-heading"></div>
+      <div id="greeting-message" class="clock-display" role="text" aria-live="polite" aria-label="Time-based greeting"
+        aria-describedby="realtime-heading"></div>
+    </section>
+
+    <!-- Stopwatch -->
+    <section id="stopwatch" class="clock-container" style="display:none;" role="region" aria-label="Stopwatch">
+      <h2 id="stopwatch-heading">Stopwatch</h2>
+      <div class="time-container">
+        <div>Elapsed Time: </div>
+        <div class="time-display" id="elapsed-time-display" role="text" aria-live="polite" aria-label="Elapsed time display"
+          aria-describedby="stopwatch-heading">00:00´00´´000</div>
+      </div>
+      <div class="button-container" role="group" aria-label="Stopwatch controls" aria-describedby="stopwatch-help">
+        <!-- Stopwatch control buttons will be populated dynamically by JavaScript -->
+      </div>
+      <div id="stopwatch-help" class="visually-hidden">Use Start to begin timing, Lap to record split times, Stop to pause, and Clear to reset.
+        Keyboard shortcut: Press Space to start/stop, Escape to stop.</div>
+      <div class="center-container">
+        <ol class="lap-list" id="lap-time-list" role="list" aria-label="Lap times list" aria-describedby="laps-help"></ol>
+        <div id="laps-help" class="visually-hidden">This list shows recorded lap times in chronological order.</div>
+      </div>
+    </section>
+
+    <!-- Timer -->
+    <section id="countdown-timer" class="clock-container" style="display:none;" role="region" aria-label="Countdown timer">
+      <h2 id="timer-heading">Countdown Timer</h2>
+
+      <!-- Quick Time Presets -->
+      <div class="timer-presets">
+        <h3>Quick Select:</h3>
+        <div class="preset-buttons" role="group" aria-label="Quick time presets" aria-describedby="presets-help">
+          <!-- Preset buttons will be populated dynamically by JavaScript -->
+        </div>
+        <div id="presets-help" class="visually-hidden">Click any preset button to quickly set the timer to that duration.</div>
+      </div>
+
+      <!-- Custom Time Input -->
+      <div class="timer-inputs">
+        <h3>Or Set Custom Time:</h3>
+
+        <div class="time-input-group" role="group" aria-label="Custom time input" aria-describedby="custom-time-help">
+          <div class="time-spinner">
+            <label for="timer-minutes">Minutes</label>
+            <div class="spinner-container">
+              <!-- Spinner buttons will be populated dynamically by JavaScript -->
+              <input type="number" id="timer-minutes" class="timer-input" value="0" min="0" max="59" aria-label="Minutes input"
+                aria-describedby="minutes-help">
+            </div>
+            <div id="minutes-help" class="visually-hidden">Type a number or use the minus and plus buttons to adjust minutes, range 0 to 59</div>
+          </div>
+
+          <div class="time-separator" aria-hidden="true">:</div>
+
+          <div class="time-spinner">
+            <label for="timer-seconds">Seconds</label>
+            <div class="spinner-container">
+              <!-- Spinner buttons will be populated dynamically by JavaScript -->
+              <input type="number" id="timer-seconds" class="timer-input" value="0" min="0" max="59" aria-label="Seconds input"
+                aria-describedby="seconds-help">
+            </div>
+            <div id="seconds-help" class="visually-hidden">Type a number or use the minus and plus buttons to adjust seconds, range 0 to 59</div>
+          </div>
+        </div>
+        <div id="custom-time-help" class="visually-hidden">Set custom timer duration by typing numbers directly or using the plus and minus
+          buttons.</div>
+      </div>
+
+      <!-- Time Preview -->
+      <div class="time-preview" role="region" aria-label="Timer preview">
+        <div class="preview-label">Total Time:</div>
+        <div id="time-preview-display" class="preview-time" role="text" aria-live="polite" aria-label="Preview of total timer duration">00:00</div>
+      </div>
+
+      <div id="countdown-display" class="clock-display" role="text" aria-live="polite" aria-label="Countdown timer display"
+        aria-describedby="timer-heading">Timer</div>
+      <div class="center-container" role="group" aria-label="Timer controls" aria-describedby="timer-help">
+        <!-- Timer control buttons will be populated dynamically by JavaScript -->
+      </div>
+      <div id="timer-help" class="visually-hidden">Set time using presets or custom input, then press Start to begin countdown. Keyboard shortcut:
+        Press Space to start/stop, Escape to stop.</div>
+    </section>
   </main>
 
-  <footer id="copyRight" class="text-center py-3 footer"></footer>
+  <footer id="copyright-text" class="app-footer" role="contentinfo" aria-label="Copyright information"></footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
+  <!-- Hidden status region for screen reader announcements -->
+  <div id="status-region" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
 </body>
 
 </html>
