@@ -335,7 +335,7 @@ const DEFAULT_TIME_GREETINGS = [
   { range: [0, 5], message: 'Good Night!' },
   { range: [5, 11], message: 'Good Morning!' },
   { range: [11, 17], message: 'Good Day!' },
-  { range: [17, 23], message: 'Good Evening!' }
+  { range: [17, 24], message: 'Good Evening!' }
 ];
 
 /**
@@ -603,12 +603,11 @@ const setTimerPreset = (minutes, seconds) => {
 const adjustTimerValue = (type, change) => {
   const input = document.getElementById(`timer-${type}`);
   let currentValue = parseInt(input.value) || 0;
-  const maxValue = type === 'minutes' ? 59 : 59;
 
   currentValue += change;
 
   if (currentValue < 0) currentValue = 0;
-  if (currentValue > maxValue) currentValue = maxValue;
+  if (currentValue > 59) currentValue = 59;
 
   input.value = currentValue;
   updateTimerPreview();
@@ -847,7 +846,6 @@ const switchClockMode = (selectedModeId) => {
  * Uses requestAnimationFrame for smooth, accurate timing
  */
 const startStopwatch = () => {
-  if (typeof stopwatchData.elapsedTime === 'undefined') stopwatchData.elapsedTime = 0;
   stopwatchData.startTime = Math.floor(performance.now() - stopwatchData.elapsedTime);
 
   /**
@@ -1068,12 +1066,6 @@ document.addEventListener('keydown', (event) => {
       event.preventDefault();
       adjustTimerValue(type, -1);
     }
-  }
-
-  // Enter key to activate buttons when focused
-  if (event.key === 'Enter' && event.target.tagName === 'BUTTON') {
-    event.preventDefault();
-    event.target.click();
   }
 });
 
