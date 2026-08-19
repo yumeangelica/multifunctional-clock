@@ -1,81 +1,67 @@
 # Multifunctional Clock
 
-A multifunctional web app featuring a real-time clock, stopwatch, and countdown timer. Built with vanilla JavaScript, HTML, and CSS — zero external dependencies.
+A static Vanilla JavaScript app combining a real-time clock, precision stopwatch, and deadline-based countdown timer.
 
-Originally developed in 2020, modernized in 2024–2026 with full accessibility support, responsive design, and a portfolio-synced pink aesthetic.
+Originally created in 2020 and polished in 2026 with yumeangelica's warm mauve design system, self-hosted Comfortaa, mobile-first controls, and quieter screen-reader behavior.
 
 ## Features
 
-### Real-Time Clock
-- Live time and date display
-- 12/24-hour format toggle
-- Time-based greeting messages (Good Morning, Good Evening, etc.)
-- Angel number alerts (11:11, 22:22, etc.)
-- Easter egg greetings for specific times
+### Real-time clock
+
+- Local date and time with a 12/24-hour toggle
+- Time-based greetings, angel-number messages, and the original time easter eggs
+- System-aware light/dark switch with a saved preference and mauve-derived themes
 
 ### Stopwatch
-- High-precision timing using `requestAnimationFrame`
-- Start, stop, lap, and reset functionality
-- Chronological lap recording with scrollable list
-- Time format: HH:MM´SS´´MMM
 
-### Countdown Timer
-- Quick preset buttons (5, 10, 15, 30 min, 30 sec)
-- Custom time input with spinner controls
-- Live time preview
-- Audio alerts using Web Audio API
-- Pause, resume, and clear functionality
-- Input validation with error feedback
+- `requestAnimationFrame` timing with `HH:MM:SS.mmm` display
+- Start, pause, resume, lap, and reset actions
+- Split and total time for every recorded lap
 
-## Technologies
+### Countdown timer
 
-- **Vanilla JavaScript (ES6+)** — no frameworks or libraries
-- **HTML5** — semantic markup with comprehensive ARIA support
-- **CSS3** — custom properties, Flexbox, responsive design, dark mode
-- **Google Fonts (Inter)** — consistent typography across portfolio
-- **Web Audio API** — timer completion sound
-- **Zero Dependencies** — no Bootstrap, no npm packages
+- 30-second and 5/10/15/30-minute presets
+- Custom minutes and seconds with accessible step controls
+- Deadline-based timing that corrects drift after background-tab throttling
+- Start, pause, resume, clear, and an inline completion alert
+- Web Audio notification unlocked by the user's Start action
 
-## Accessibility & UX
+## Interaction and accessibility
 
-- Fully keyboard-navigable (Space to start/stop, Escape to stop, Arrow keys for spinner adjustment)
-- Screen reader announcements via ARIA live regions
-- `prefers-reduced-motion` support
-- `prefers-contrast: high` support
-- `prefers-color-scheme: dark` support
-- `:focus-visible` styles for keyboard users only
-- Touch-optimized with 44px+ minimum tap targets
-- Responsive from 360px to desktop
+- Three direct mode buttons with explicit selected state
+- Native controls, visible keyboard focus, 44px+ targets, zoom-friendly layout
+- Space starts/pauses the active stopwatch or timer; Escape pauses it
+- The clock updates visually without being announced every second
+- Reduced-motion and forced-colors support
 
-## Project Structure
+The implementation follows WCAG 2.2 AA-oriented practices, but complete conformance still requires assistive-technology and device testing.
 
+## Technology
+
+- Semantic HTML, modern CSS, and Vanilla JavaScript
+- Date, Performance, Web Audio, and `requestAnimationFrame` browser APIs
+- Self-hosted Comfortaa 400/600/700 under the SIL Open Font License
+- No runtime dependencies, package manager, or build step
+
+## Run locally
+
+Open `index.html`, or run `python3 -m http.server 4174` and visit `http://localhost:4174`.
+
+## Project structure
+
+```text
+index.html       Static clock, stopwatch, and timer controls
+styles.css       Palette A tokens, dark variant, and mobile-first styles
+app.js           Time-tool state and interactions
+theme.js         Early theme setup, switch state, and saved preference
+copyright.js     Current footer year
+fonts/           Local Comfortaa files and OFL license
 ```
-├── index.html      # Main HTML document
-├── styles.css      # All styles with CSS custom properties
-├── app.js          # Clock, stopwatch, timer logic and UI
-├── copyright.js    # Dynamic footer copyright year
-├── LICENSE         # CC BY-NC-SA 4.0
-└── README.md
-```
-
-## Getting Started
-
-1. Clone or download the project files
-2. Open `index.html` in any modern web browser
-3. Use the dropdown to switch between clock modes
-
-## Browser Support
-
-- Chrome 88+
-- Firefox 85+
-- Safari 14+
-- Edge 88+
-- Mobile: iOS Safari, Chrome Mobile, Samsung Internet
 
 ## License
 
-This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. See the [LICENSE](LICENSE) file for details.
+Application code and content are licensed under [CC BY-NC-SA 4.0](LICENSE). Comfortaa remains under the SIL Open Font License in `fonts/OFL.txt`.
 
 ---
 
-**Created with love by [yumeangelica](https://yumeangelica.github.io) | 2020–2026**
+Created with love by [yumeangelica](https://yumeangelica.github.io) · 2020–2026
